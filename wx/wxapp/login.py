@@ -7,6 +7,7 @@ import json
 from wx.ret import ret
 from wx import secrets
 import requests
+import time
 
 # 登录处理
 def login(request):
@@ -23,18 +24,20 @@ def login(request):
             response = JsonResponse({"error_code": 1, "msg": "invalid code"})
             return ret(response)
 
-        has_user = 0
+        token = openid + str(int(time.time()))
+        md5 = hashlib.md5()
+        md5.update(token.encode("utf-8"))
+        token = md5.hexdigest()
 
         try:
             has_user = models.token.objects.get(openid=openid)
-        except:
-            pass
-        if has_user != 0:
             has_user.sessionkey = session_key
+            has_user.token = token
             has_user.save()
-        else:
-            models.token.objects.create(openid=openid,sessionkey=session_key)
-        response = JsonResponse({"error_code": 0, "msg": "success", "data": {"token": openid}})
+        except:
+            models.token.objects.create(openid=openid,sessionkey=session_key,token=token)
+
+        response = JsonResponse({"error_code": 0, "msg": "success", "data": {"token": token}})
         return ret(response)
     except:
         response = JsonResponse({"error_code": 1, "msg": "params error"})

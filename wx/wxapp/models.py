@@ -6,6 +6,8 @@ class token(models.Model):
 
     sessionkey = models.CharField(max_length=50)
 
+    token = models.CharField(max_length=50)
+
 
 
 

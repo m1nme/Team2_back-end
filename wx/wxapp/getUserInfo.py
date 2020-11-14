@@ -6,17 +6,19 @@ import json
 def getUserInfo(request):
     try:
         params = json.loads(request.body)
-        openid = params['token']
+        token = params['token']
         try:
-        	models.token.objects.get(openid=openid)
+            openid = models.token.objects.get(token=token).openid
         except:
-	        response = JsonResponse({"error_code": 1, "msg": "please login first"})
-	        return ret(response)        	
-
-        user = models.user.objects.get(openid=openid)
-        nickname = user.nickname
-        url = user.url
-
+            response = JsonResponse({"error_code": 1, "msg": "please login first"})
+            return ret(response)
+        try:
+            user = models.user.objects.get(openid=openid)
+            nickname = user.nickname
+            url = user.url
+        except:
+            nickname = "匿名用户"
+            url = "https://iminx-1258939911.cos.ap-chengdu.myqcloud.com/fzucats/20201113230601.jpg"
         response = JsonResponse({"error_code": 0, "msg": "success", "data": {"nickName": nickname, "avatarUrl": url}})
         return ret(response)
     except:

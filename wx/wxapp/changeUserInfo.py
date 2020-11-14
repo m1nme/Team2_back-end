@@ -6,9 +6,9 @@ import json
 def changeUserInfo(request):
     try:
         params = json.loads(request.body)
-        openid = params['token']
+        token = params['token']
         try:
-        	models.token.objects.get(openid=openid)
+        	openid = models.token.objects.get(token=token).openid
         except:
 	        response = JsonResponse({"error_code": 1, "msg": "please login first"})
 	        return ret(response)        	
