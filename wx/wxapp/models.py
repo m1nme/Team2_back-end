@@ -35,3 +35,14 @@ class cats(models.Model):
     openid = models.CharField(max_length=50)
     # 提供信息的用户昵称
     username = models.CharField(max_length=50)
+class feed(models.Model):
+    # 猫猫ID
+    catid = models.IntegerField()
+    # 喂猫人ID
+    openid = models.CharField(max_length=50)
+    # 喂食的食物和量
+    food = models.CharField(max_length=500)
+    # 喂食时间
+    time = models.CharField(max_length=100)
+    # 投喂类型1为普通2为预约
+    op = models.IntegerField(default=1)
