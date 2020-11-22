@@ -3,36 +3,32 @@ from wx.ret import ret
 from wxapp import models
 import json
 
-def getCatInfo(request):
+def getFeedbackInfo(request):
     try:
         params = json.loads(request.body)
         token = params['token']
-        catid = params['catId']
+        feedbackid = params['feedbackId']
         try:
             openid = models.token.objects.get(token=token).openid
         except:
             response = JsonResponse({"error_code": 1, "msg": "please login first"})
             return ret(response)
         try:
-            cat = models.cats.objects.get(id=catid,vet=1)
+            feedback = models.feedbacks.objects.get(id=feedbackid,openid=openid)
             response = JsonResponse({
                                     "error_code": 0,
                                     "msg": "success",
                                     "data": {
-                                        "catId": catid,
-                                        "catName": cat.name,
-                                        "catColor": cat.color,
-                                        "catSex": cat.sex,
-                                        "catCharacter": cat.character,
-                                        "catStatus": cat.status,
-                                        "catAddress": cat.address,
-                                        "catUrl": cat.url,
-                                        "userName": cat.username
+                                        "type": feedback.feedbacktype,
+                                        "content": feedback.content,
+                                        "answer": feedback.answer,
+                                        "time": feedback.time,
+                                        "vet": feedback.vet
                                         }
                                     })
             return ret(response)
         except:
-            response = JsonResponse({"error_code": 1, "msg": "catId error"})
+            response = JsonResponse({"error_code": 1, "msg": "feedbackId error"})
             return ret(response)
     except:
         response = JsonResponse({"error_code": 1, "msg": "params error"})

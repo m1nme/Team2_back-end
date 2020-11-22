@@ -48,7 +48,8 @@ def getFeedLog(request):
                 cat = {"catId": i.catid,
                         "food": i.food,
                         "time": i.time,
-                        "op": i.op
+                        "op": i.op,
+                        "feedId": i.id
                     }
                 data.append(cat)
         response = JsonResponse({"error_code": 0, "msg": "success", "data": data})

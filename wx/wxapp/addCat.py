@@ -32,7 +32,7 @@ def addCat(request):
                                     url=caturl,
                                     openid=openid,
                                     username=username,
-                                    vet=1)
+                                    vet=0)
             response = JsonResponse({"error_code": 0, "msg": "success"})
             return ret(response)
         except:

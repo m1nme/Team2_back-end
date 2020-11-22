@@ -3,36 +3,34 @@ from wx.ret import ret
 from wxapp import models
 import json
 
-def getCatInfo(request):
+def getPostInfo(request):
     try:
         params = json.loads(request.body)
         token = params['token']
-        catid = params['catId']
+        postid = params['postId']
         try:
             openid = models.token.objects.get(token=token).openid
         except:
             response = JsonResponse({"error_code": 1, "msg": "please login first"})
             return ret(response)
         try:
-            cat = models.cats.objects.get(id=catid,vet=1)
+            post = models.posts.objects.get(id=postid,vet=1)
             response = JsonResponse({
                                     "error_code": 0,
                                     "msg": "success",
                                     "data": {
-                                        "catId": catid,
-                                        "catName": cat.name,
-                                        "catColor": cat.color,
-                                        "catSex": cat.sex,
-                                        "catCharacter": cat.character,
-                                        "catStatus": cat.status,
-                                        "catAddress": cat.address,
-                                        "catUrl": cat.url,
-                                        "userName": cat.username
+                                        "title": post.title,
+                                        "content": post.content,
+                                        "urlList": post.urllist,
+                                        "userName": post.username,
+                                        "userUrl": post.userurl,
+                                        "catId": post.catid,
+                                        "time": post.modifytime
                                         }
                                     })
             return ret(response)
         except:
-            response = JsonResponse({"error_code": 1, "msg": "catId error"})
+            response = JsonResponse({"error_code": 1, "msg": "postId error"})
             return ret(response)
     except:
         response = JsonResponse({"error_code": 1, "msg": "params error"})
