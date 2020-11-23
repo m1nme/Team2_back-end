@@ -3,7 +3,6 @@ from wx.ret import ret
 from wxapp import models
 import json
 
-
 def getFeedLog(request):
     try:
         params = json.loads(request.body)

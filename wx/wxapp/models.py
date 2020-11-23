@@ -99,3 +99,18 @@ class feedbacks(models.Model):
     vet = models.IntegerField()
     # 反馈提交时间
     time = models.DateTimeField(auto_now_add=True)
+class likecats(models.Model):
+    # 关注者ID
+    openid = models.CharField(max_length=50)
+    # 关注的猫猫ID
+    catid = models.IntegerField()
+class likeposts(models.Model):
+    # 关注者ID
+    openid = models.CharField(max_length=50)
+    # 帖子ID
+    postid = models.IntegerField()
+class likecomments(models.Model):
+    # 关注者ID
+    openid = models.CharField(max_length=50)
+    # 留言ID
+    commentid = models.IntegerField()

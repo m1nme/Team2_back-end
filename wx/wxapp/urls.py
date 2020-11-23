@@ -7,6 +7,7 @@ from .import uploadImg
 from . import publishPost,getPostInfo,deletePost,showPostsLog
 from . import publishComment,showComments,deleteComment,showCommentsLog
 from . import submitFeedback,showFeedbacksList,getFeedbackInfo
+from . import like,showLikesLog,getLikesNum
 urlpatterns = [
     path('login/', login.login),
     path('changeUserInfo/', changeUserInfo.changeUserInfo),
@@ -36,4 +37,8 @@ urlpatterns = [
     path('submitFeedback/', submitFeedback.submitFeedback),
     path('showFeedbacksList/', showFeedbacksList.showFeedbacksList),
     path('getFeedbackInfo/', getFeedbackInfo.getFeedbackInfo),
+
+    path('like/', like.like),
+    path('showLikesLog/', showLikesLog.showLikesLog),
+    path('getLikesNum/', getLikesNum.getLikesNum),
 ]
