@@ -9,6 +9,7 @@ def submitFeedback(request):
         token = params['token']
         op = params['op']
         content = params['content']
+        urllist = str(params['urlList'])
         try:
             openid = models.token.objects.get(token=token).openid
         except:
@@ -21,6 +22,7 @@ def submitFeedback(request):
                 models.feedbacks.objects.create(openid=openid,
                                                 catid=catid,
                                                 content=content,
+                                                urllist=urllist,
                                                 feedbacktype=feedbacktype,
                                                 answer='',
                                                 vet=0)
@@ -36,6 +38,7 @@ def submitFeedback(request):
                 models.feedbacks.objects.create(openid=openid,
                                                 postid=postid,
                                                 content=content,
+                                                urllist=urllist,
                                                 feedbacktype=feedbacktype,
                                                 answer='',
                                                 vet=0)
@@ -51,6 +54,7 @@ def submitFeedback(request):
                 models.feedbacks.objects.create(openid=openid,
                                                 commentid=commentid,
                                                 content=content,
+                                                urllist=urllist,
                                                 feedbacktype=feedbacktype,
                                                 answer='',
                                                 vet=0)
@@ -64,6 +68,7 @@ def submitFeedback(request):
             try:
                 models.feedbacks.objects.create(openid=openid,
                                                 content=content,
+                                                urllist=urllist,
                                                 feedbacktype=feedbacktype,
                                                 answer='',
                                                 vet=0)

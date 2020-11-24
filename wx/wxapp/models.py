@@ -95,6 +95,8 @@ class feedbacks(models.Model):
     feedbacktype = models.IntegerField()
     # 反馈内容
     content = models.CharField(max_length=300)
+    # 反馈图片列表
+    urllist = models.CharField(max_length=2000,default='')
     # 反馈回复
     answer = models.CharField(max_length=300,null=True)
     # 反馈状态(0为待回复，1为已回复)

@@ -21,6 +21,7 @@ def getFeedbackInfo(request):
                                     "data": {
                                         "type": feedback.feedbacktype,
                                         "content": feedback.content,
+                                        "urlList": feedback.urllist,
                                         "answer": feedback.answer,
                                         "time": feedback.time,
                                         "vet": feedback.vet
