@@ -21,6 +21,7 @@ def addCat(request):
             catstatus = params['catStatus']
             cataddress = params['catAddress']
             caturl = params['catUrl']
+            urllist = str(params['urlList'])
             username = models.user.objects.get(openid=openid).nickname
 
             models.cats.objects.create(name=catname,
@@ -30,6 +31,7 @@ def addCat(request):
                                     status=catstatus,
                                     address=cataddress,
                                     url=caturl,
+                                    urllist=urllist,
                                     openid=openid,
                                     username=username,
                                     vet=0)

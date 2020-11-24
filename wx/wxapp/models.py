@@ -29,6 +29,8 @@ class cats(models.Model):
     address = models.CharField(max_length=50)
     # 头像URL
     url = models.CharField(max_length=300)
+    # 猫猫照片URL列表
+    urllist = models.CharField(max_length=2000,default='')
     # 审核状态(-1:审核失败，1：审核通过，0：待审核)
     vet = models.IntegerField()
     # 提供信息的用户

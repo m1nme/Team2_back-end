@@ -27,6 +27,7 @@ def getCatInfo(request):
                                         "catStatus": cat.status,
                                         "catAddress": cat.address,
                                         "catUrl": cat.url,
+                                        "urlList": cat.urllist,
                                         "userName": cat.username
                                         }
                                     })
