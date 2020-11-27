@@ -23,7 +23,7 @@ def login(request):
             }
             payload = {
                 "user_type": "admin",
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=1440)
             }
             token = jwt.encode(payload=payload, key=salt_jwt, headers=headers).decode("utf-8")
             response = JsonResponse({"error_code":0, "token": token})
