@@ -8,6 +8,7 @@ from . import publishPost,getPostInfo,deletePost,showPostsLog
 from . import publishComment,showComments,deleteComment,showCommentsLog
 from . import submitFeedback,showFeedbacksList,getFeedbackInfo
 from . import like,showLikesLog,getLikesNum,dislike
+from . import eleMiao,latestPosts
 urlpatterns = [
     path('login/', login.login),
     path('changeUserInfo/', changeUserInfo.changeUserInfo),
@@ -42,4 +43,7 @@ urlpatterns = [
     path('showLikesLog/', showLikesLog.showLikesLog),
     path('getLikesNum/', getLikesNum.getLikesNum),
     path('dislike/', dislike.dislike),
+
+    path('eleMiao/', eleMiao.eleMiao),
+    path('latestPosts/', latestPosts.latestPosts),
 ]

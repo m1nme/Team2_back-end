@@ -45,9 +45,14 @@ class feed(models.Model):
     # 喂食的食物和量
     food = models.CharField(max_length=500)
     # 喂食时间
-    time = models.CharField(max_length=100)
+    time = models.CharField(max_length=20)
     # 投喂类型1为普通2为预约
     op = models.IntegerField(default=1)
+class lastfeed(models.Model):
+    # 猫猫ID
+    catid = models.IntegerField()
+    # 最新喂食时间
+    time = models.CharField(max_length=20)
 class posts(models.Model):
     # 发帖人ID
     openid = models.CharField(max_length=50)

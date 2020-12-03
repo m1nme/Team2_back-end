@@ -19,6 +19,7 @@ def getUserInfo(request):
         except:
             nickname = "匿名用户"
             url = "https://iminx-1258939911.cos.ap-chengdu.myqcloud.com/fzucats/20201113230601.jpg"
+            models.user.objects.create(openid=openid,nickname=nickname,url=url)
         response = JsonResponse({"error_code": 0, "msg": "success", "data": {"nickName": nickname, "avatarUrl": url}})
         return ret(response)
     except:
